@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <% if flash["notice"] %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if flash["alert"] %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <%= link_to "Members Only!", root_path, class: "navbar-brand" %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       <ul class="navbar-nav ml-auto">
+       <% if user_signed_in? %>
+       
+         <%= link_to "Hi, #{current_user.name}!", edit_registration_path(current_user)%>
+       <% end %>
+       <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light my-2 my-sm-0" %>
+          </li>
+       </ul>
+      </div>
+    </nav>
+
+   
+    <%= yield %>
+  </body>
+</html>

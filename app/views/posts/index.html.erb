@@ -1,35 +1,37 @@
-
 <div class="container">
   <div class="row justify-content-center">
-    
-<h1 class = "text-center">Posts</h1>
-</div>
-<div class="row">
-<ul class="list-group container-fluid">
-  
-    <% @posts.each do |post| %>
-      <li class="list-group-item">
-        <h3 class = "font-weight-bold"><%= post.title%></h3>
-        <h5 class = "text-dark">By: 
-        <% if user_signed_in? %>
-          <%= post.author["name"]%>
-        <% else %> 
-          Anonymous
-        <% end %> 
-        </h5>
-        <p class = "text-break"><%= post.content%></p>
-      </li>
-
+    <h1 class = "text-center">Posts</h1>
+  </div>
+  <div class="row">
+    <ul class="list-group container-fluid">
+      <% @posts.each do |post| %>
+        <li class="list-group-item d-flex">
+        <div class="my-auto mr-3">
+          <% if user_signed_in? %>
+            <%= fa_icon "user-circle-o 5x" %>
+          <% else %>
+            <%= fa_icon "user-secret 5x" %>
+          <% end %>
+        </div>
+        <div>
+          <h3 class = "font-weight-bold"><%= post.title%></h3>
+          <h5 class = "text-dark">By: 
+            <% if user_signed_in? %>
+              <%= post.author["name"]%>
+            <% else %>
+              Anonymous
+            <% end %>
+          </h5>
+          <p class = "text-break"><%= post.content%></p>
+          </div>
+        </li>
       <% end %>
-      </ul>
-      </div>
-    
-
-<br>
-<div class="d-flex justify-content-center mb-4">
-  <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
-</div>
-
+    </ul>
+  </div>
+  <br>
+  <div class="d-flex justify-content-center mb-4">
+    <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
+  </div>
 </div>
 </div>
 </div>
